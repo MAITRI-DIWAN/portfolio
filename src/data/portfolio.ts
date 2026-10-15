@@ -17,22 +17,38 @@ import {
   SiPostgresql,
   SiReact,
 } from "react-icons/si";
+import {
+  FaCalendarDays,
+  FaCampground,
+  FaChartLine,
+  FaChildReaching,
+  FaClock,
+  FaCloud,
+  FaCoins,
+  FaFileInvoiceDollar,
+  FaGamepad,
+  FaGavel,
+  FaReceipt,
+  FaServer,
+  FaShieldHalved,
+  FaTrophy,
+  FaUsers,
+} from "react-icons/fa6";
 
 export const profile = {
   name: "Maitri Diwan",
   firstName: "Maitri",
   title: "Full Stack Developer",
-  roles: ["Full Stack Developer", "React & Next.js Developer", "Node.js Developer", "AI-Assisted Builder"],
+  roles: ["Full Stack Developer", "AI-Assisted Builder"],
   tagline:
     "I build fast, scalable web apps with React, Next.js, Node.js, MongoDB and PostgreSQL, and use AI tools like Claude, Cursor and GitHub Copilot to ship faster.",
   locations: ["Ahmedabad", "Pune", "Bangalore"],
-  availability: "Open to new opportunities",
   email: "maitridiwan19@gmail.com",
   // Google Calendar appointment schedule (embed form of https://calendar.app.google/jMsBKMTGb5LGXdAv9)
   bookingUrl:
     "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2Ewcf0yVp70GDecZVFYXTnO5pxZsfxOw78hUTyLDOuT5sf1RCta5k_AtYfR5YUVB1rVepWGxxy?gv=true",
-  // Put your resume at public/resume.pdf, or paste a Google Drive link here.
-  resumeUrl: "/Maitri_Diwan_Resume.pdf",
+    // Put your resume at public/resume.pdf, or paste a Google Drive link here.
+  resumeUrl: "/Maitri_Resume.pdf",
   socials: {
     linkedin: "https://www.linkedin.com/in/maitri-diwan-7a8762226",
     github: "https://github.com/MAITRI-DIWAN",
@@ -95,6 +111,10 @@ export const skillGroups: { group: string; items: Skill[] }[] = [
 
 export type Project = {
   name: string;
+  category: string;
+  icon: IconType;
+  decor: IconType[]; // small floating icons around the main one
+  colors: [string, string]; // gradient for the project visual
   summary: string;
   features: string[];
   stack: string[];
@@ -105,6 +125,10 @@ export type Project = {
 export const projects: Project[] = [
   {
     name: "Rolling Arrays – Reimburse",
+    category: "Enterprise · Fintech",
+    icon: FaFileInvoiceDollar,
+    decor: [FaReceipt, FaCoins, FaChartLine],
+    colors: ["#10b981", "#0ea5e9"],
     summary:
       "Enterprise expense reimbursement and claims platform integrated with SAP, covering claim creation, approvals, audit logging and reporting across tenants and currencies.",
     features: [
@@ -116,6 +140,10 @@ export const projects: Project[] = [
   },
   {
     name: "Iceline Hosting",
+    category: "Cloud · Gaming",
+    icon: FaServer,
+    decor: [FaGamepad, FaCloud, FaShieldHalved],
+    colors: ["#3b82f6", "#06b6d4"],
     summary:
       "Game-server hosting platform built on a microservices architecture (auth, gs-manager, fs-manager).",
     features: [
@@ -127,6 +155,10 @@ export const projects: Project[] = [
   },
   {
     name: "Kidzcamp",
+    category: "Marketplace · Admin panel",
+    icon: FaCampground,
+    decor: [FaChildReaching, FaCalendarDays, FaUsers],
+    colors: ["#f59e0b", "#ec4899"],
     summary:
       "Centralized admin panel for a multi-vendor kids activity marketplace, managing vendors, events, bookings and payments.",
     features: [
@@ -138,6 +170,10 @@ export const projects: Project[] = [
   },
   {
     name: "Bacancy Auction",
+    category: "Real-time · Bidding",
+    icon: FaGavel,
+    decor: [FaTrophy, FaClock, FaCoins],
+    colors: ["#8b5cf6", "#f43f5e"],
     summary:
       "Responsive, real-time auction platform where users create, manage and bid on live auction events with instant updates.",
     features: [
@@ -146,18 +182,5 @@ export const projects: Project[] = [
       "Reusable components, authentication and protected routes",
     ],
     stack: ["React.js", "TypeScript", "Redux Toolkit", "MUI", "Node.js", "Express.js", "PostgreSQL", "REST APIs"],
-  },
-];
-
-export const experience = [
-  {
-    role: "Full Stack Developer",
-    company: "", // optional: shown as "@ Company" when filled
-    period: "2024 – Present",
-    points: [
-      "Build and maintain client web apps with React, Next.js, Node.js, MongoDB and PostgreSQL.",
-      "Design REST APIs and database schemas for new features.",
-      "Use Claude, Cursor and GitHub Copilot to speed up development and code reviews.",
-    ],
   },
 ];

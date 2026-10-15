@@ -9,7 +9,6 @@ import ContactForm from "@/components/ContactForm";
 import {
   about,
   aboutHeading,
-  experience,
   profile,
   skillGroups,
   stats,
@@ -78,31 +77,6 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
-        </Section>
-
-        {/* Experience */}
-        <Section id="experience" eyebrow="Where I've worked" title="Experience">
-          <ol className="relative mx-auto max-w-3xl space-y-10 border-l border-border pl-8">
-            {experience.map((e) => (
-              <li key={e.role + e.company} className="relative">
-                <Reveal>
-                  <span className="absolute -left-[41px] top-1.5 h-4 w-4 rounded-full border-2 border-accent bg-background" />
-                  <div className="flex flex-wrap items-baseline justify-between gap-2">
-                    <h3 className="text-xl font-semibold">
-                      {e.role}
-                      {e.company && <span className="text-muted"> @ {e.company}</span>}
-                    </h3>
-                    <span className="font-mono text-sm text-muted">{e.period}</span>
-                  </div>
-                  <ul className="mt-3 list-disc space-y-1 pl-5 text-muted">
-                    {e.points.map((pt) => (
-                      <li key={pt}>{pt}</li>
-                    ))}
-                  </ul>
-                </Reveal>
-              </li>
-            ))}
-          </ol>
         </Section>
 
         {/* Contact */}

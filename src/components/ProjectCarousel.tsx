@@ -3,7 +3,57 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaChevronLeft, FaChevronRight, FaGithub, FaArrowRight } from "react-icons/fa6";
-import { projects } from "@/data/portfolio";
+import { projects, type Project } from "@/data/portfolio";
+
+// Positions for the small floating icons around the main one.
+const decorSpots = [
+  "left-[12%] top-[16%]",
+  "right-[12%] top-[22%]",
+  "right-[18%] bottom-[16%]",
+];
+
+function ProjectVisual({ project }: { project: Project }) {
+  const [from, to] = project.colors;
+  const Icon = project.icon;
+
+  return (
+    <div
+      className="relative flex aspect-video flex-col items-center justify-center overflow-hidden rounded-xl border border-border"
+      style={{ background: `radial-gradient(circle at 30% 20%, ${from}33, transparent 60%), radial-gradient(circle at 80% 90%, ${to}33, transparent 55%), var(--background)` }}
+    >
+      {/* dotted grid */}
+      <div
+        className="absolute inset-0 opacity-30"
+        style={{ backgroundImage: "radial-gradient(var(--border) 1px, transparent 1px)", backgroundSize: "18px 18px" }}
+      />
+
+      {project.decor.map((D, idx) => (
+        <motion.div
+          key={idx}
+          className={`absolute ${decorSpots[idx % decorSpots.length]} rounded-lg border border-border bg-surface/80 p-2.5 backdrop-blur`}
+          animate={{ y: [0, -8, 0] }}
+          transition={{ duration: 3 + idx, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <D size={20} style={{ color: idx % 2 ? to : from }} />
+        </motion.div>
+      ))}
+
+      <motion.div
+        initial={{ scale: 0.6, rotate: -10, opacity: 0 }}
+        animate={{ scale: 1, rotate: 0, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 180, damping: 14, delay: 0.1 }}
+        className="relative flex h-24 w-24 items-center justify-center rounded-3xl text-white shadow-2xl sm:h-28 sm:w-28"
+        style={{ background: `linear-gradient(135deg, ${from}, ${to})`, boxShadow: `0 20px 60px -10px ${from}88` }}
+      >
+        <Icon size={48} />
+      </motion.div>
+
+      <span className="relative mt-5 rounded-full border border-border bg-surface/80 px-3 py-1 font-mono text-xs text-muted backdrop-blur">
+        {project.category}
+      </span>
+    </div>
+  );
+}
 
 export default function ProjectCarousel() {
   const [i, setI] = useState(0);
@@ -26,12 +76,13 @@ export default function ProjectCarousel() {
               setDir(idx > i ? 1 : -1);
               setI(idx);
             }}
-            className={`rounded-full border px-4 py-2 text-sm transition ${
+            className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition ${
               idx === i
                 ? "border-accent bg-accent/15 text-foreground"
                 : "border-border text-muted hover:border-accent/60"
             }`}
           >
+            <proj.icon style={{ color: proj.colors[0] }} />
             {proj.name}
           </button>
         ))}
@@ -48,9 +99,7 @@ export default function ProjectCarousel() {
             transition={{ duration: 0.35 }}
             className="grid gap-8 p-6 sm:p-10 md:grid-cols-2"
           >
-            <div className="flex aspect-video items-center justify-center rounded-xl bg-gradient-to-br from-accent/30 via-background to-accent-2/20">
-              <span className="px-4 text-center text-3xl font-extrabold sm:text-4xl">{p.name}</span>
-            </div>
+            <ProjectVisual project={p} />
             <div className="flex flex-col">
               <p className="font-mono text-xs text-muted">
                 Project {i + 1} of {projects.length}

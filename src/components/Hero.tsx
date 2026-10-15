@@ -45,13 +45,6 @@ export default function Hero() {
       <div className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-accent/20 blur-3xl" />
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 pb-24 pt-20 sm:px-6 sm:pt-28 md:grid-cols-[1.4fr_1fr]">
         <div>
-          <motion.span
-            {...fade(0)}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-sm text-muted"
-          >
-            <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
-            {profile.availability}
-          </motion.span>
           <motion.h1 {...fade(0.1)} className="text-4xl font-extrabold tracking-tight sm:text-6xl">
             Hello, I&apos;m {profile.firstName} <span className="inline-block animate-[wave_2s_ease-in-out_infinite] origin-[70%_70%]">👋</span>
           </motion.h1>
